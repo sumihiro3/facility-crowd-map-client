@@ -83,6 +83,10 @@ export default {
    ** Build configuration
    */
   build: {
+    filenames: {
+      app: ({ isDev }) => (isDev ? '[name].[hash].js' : '[chunkhash].js'),
+      chunk: ({ isDev }) => (isDev ? '[name].[hash].js' : '[chunkhash].js')
+    },
     /*
      ** You can extend webpack config here
      */
