@@ -84,11 +84,83 @@ export default {
         window.liff
           .shareTargetPicker([
             {
-              type: 'text',
-              text: 'this is a test'
+              type: 'flex',
+              altText: '超限定マップ',
+              contents: {
+                type: 'bubble',
+                hero: {
+                  type: 'image',
+                  url:
+                    'https://2.bp.blogspot.com/-_xrqQ8WWe_g/XJB5e2_UFaI/AAAAAAABR_g/0zNnYPOnFsAd3AAIG7nDE-sOyFoyf59MwCLcBGAs/s400/website_heatmap.png',
+                  size: 'full',
+                  aspectRatio: '1:1',
+                  aspectMode: 'cover'
+                },
+                body: {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                    {
+                      type: 'text',
+                      text: '超限定マップ',
+                      weight: 'bold',
+                      size: 'xl'
+                    },
+                    {
+                      type: 'box',
+                      layout: 'vertical',
+                      margin: 'lg',
+                      spacing: 'sm',
+                      contents: [
+                        {
+                          type: 'box',
+                          layout: 'baseline',
+                          spacing: 'sm',
+                          contents: [
+                            {
+                              type: 'text',
+                              text:
+                                '大阪府施設の混雑状況がリアルタイムでひと目で分かるサービスです',
+                              wrap: true,
+                              color: '#666666',
+                              size: 'md',
+                              flex: 5
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                footer: {
+                  type: 'box',
+                  layout: 'vertical',
+                  spacing: 'sm',
+                  contents: [
+                    {
+                      type: 'button',
+                      style: 'link',
+                      height: 'sm',
+                      action: {
+                        type: 'uri',
+                        label: 'すぐに見る',
+                        uri: 'https://liff.line.me/1654002474-d1eY563w'
+                      }
+                    },
+                    {
+                      type: 'spacer',
+                      size: 'sm'
+                    }
+                  ],
+                  flex: 0
+                }
+              }
             }
           ])
-          .then(alert('ShareTargetPicker was launched'))
+          .then(
+            // launched!
+            console.log('ShareTargetPicker was launched')
+          )
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           .catch(function(res) {
             console.error('Error!! at share target picker', res)
