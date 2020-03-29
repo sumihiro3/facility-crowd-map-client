@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="100%">
+  <v-card class="mx-auto" width="100%" outlined>
     <v-list>
       <v-list-item>
         <v-list-item-title>
@@ -8,23 +8,23 @@
       </v-list-item>
 
       <v-list-group
-        v-for="facility in facilities"
-        :key="facility.id"
+        v-for="building in facilityBuildings"
+        :key="building.id"
         no-action
         sub-group
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <v-list-item-title>{{ facility.name }}</v-list-item-title>
+            <v-list-item-title>{{ building.name }}</v-list-item-title>
           </v-list-item-content>
         </template>
 
         <v-list-item
-          v-for="floor in facility.floors"
-          :key="floor.floorId"
-          @click="facilitySelected(facility.id, floor.floorId)"
+          v-for="facility in building.facilities"
+          :key="facility.facilityId"
+          @click="facilitySelected(building, facility.facilityId)"
         >
-          <v-list-item-title v-text="floor.name"></v-list-item-title>
+          <v-list-item-title v-text="facility.name"></v-list-item-title>
         </v-list-item>
       </v-list-group>
     </v-list>
@@ -35,20 +35,20 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Facility } from '~/types'
-import Facilities from '@/data/facilities.json'
+import { FacilityBuilding } from '~/types'
+import FacilityBuildings from '@/data/facility_buildings.json'
 
 @Component
 export default class FacilityList extends Vue {
-  facilities: Facility[] = Facilities
+  facilityBuildings: FacilityBuilding[] = FacilityBuildings
 
   hoge(val: number) {
     console.log('hoge', val)
   }
 
-  facilitySelected(facility: string, floor: string) {
+  facilitySelected(building: FacilityBuilding, facility: string) {
     console.log('Facility: ', facility)
-    this.$emit('floorSelected', facility, floor)
+    this.$emit('facilitySelected', building, facility)
   }
 }
 </script>

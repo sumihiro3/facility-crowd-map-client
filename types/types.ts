@@ -18,12 +18,21 @@
 //   y: number
 // }
 
-export interface Facility {
+export interface FacilityBuilding {
   id: string
   name: string
   url: string
-  floors: Array<{
-    floorId: string
+  facilities: Array<{
+    facilityId: string
     name: string
+    mapUrl: string
+    maxCells?: number
   }>
+}
+
+export interface Facility {
+  facilityId: string
+  name: string
+  mapUrl: string
+  maxCells?: number
 }
