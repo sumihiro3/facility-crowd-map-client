@@ -17,6 +17,48 @@
                     "numberOfPerson": 0
                 }
             ]
+        },
+        {
+            "id": 2,
+            "name": "大阪市役所 地下1階",
+            "values": [
+                {
+                    "id": "004",
+                    "numberOfPerson": 20
+                },
+                {
+                    "id": "005",
+                    "numberOfPerson": 0
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "大阪府立体育会館 1階",
+            "values": [
+                {
+                    "id": "006",
+                    "numberOfPerson": 100
+                },
+                {
+                    "id": "007",
+                    "numberOfPerson": 3
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "大阪府立体育会館 2階",
+            "values": [
+                {
+                    "id": "008",
+                    "numberOfPerson": 0
+                },
+                {
+                    "id": "009",
+                    "numberOfPerson": 40
+                }
+            ]
         }
     ]
 }
