@@ -94,7 +94,11 @@ export default {
                     'https://2.bp.blogspot.com/-_xrqQ8WWe_g/XJB5e2_UFaI/AAAAAAABR_g/0zNnYPOnFsAd3AAIG7nDE-sOyFoyf59MwCLcBGAs/s400/website_heatmap.png',
                   size: 'full',
                   aspectRatio: '1:1',
-                  aspectMode: 'cover'
+                  aspectMode: 'cover',
+                  action: {
+                    type: 'uri',
+                    uri: 'http://linecorp.com/'
+                  }
                 },
                 body: {
                   type: 'box',
@@ -114,7 +118,7 @@ export default {
                       contents: [
                         {
                           type: 'box',
-                          layout: 'baseline',
+                          layout: 'vertical',
                           spacing: 'sm',
                           contents: [
                             {
@@ -125,6 +129,15 @@ export default {
                               color: '#666666',
                               size: 'md',
                               flex: 5
+                            },
+                            {
+                              type: 'text',
+                              text:
+                                '※注意：ハッカソン作品ですので本物のデータではありません',
+                              size: 'md',
+                              color: '#FF0000',
+                              wrap: true,
+                              weight: 'bold'
                             }
                           ]
                         }
