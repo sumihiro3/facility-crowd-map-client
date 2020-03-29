@@ -34,11 +34,69 @@
     {
         "id": 4,
         "facilityId": 2,
-        "name": "郵便局",
+        "name": "総務局",
         "beacon": "004",
         "cells": [
-            17,
-            21
+            31,
+            35
+        ]
+    },
+    {
+        "id": 5,
+        "facilityId": 2,
+        "name": "子供青少年局",
+        "beacon": "005",
+        "cells": [
+            2,
+            3,
+            6,
+            7
+        ]
+    },
+    {
+        "id": 6,
+        "facilityId": 3,
+        "name": "ピロティ",
+        "beacon": "006",
+        "cells": [
+            21,
+            25,
+            29,
+            33
+        ]
+    },
+    {
+        "id": 7,
+        "facilityId": 3,
+        "name": "南ピロティ",
+        "beacon": "007",
+        "cells": [
+            20,
+            24,
+            28,
+            32
+        ]
+    },
+    {
+        "id": 8,
+        "facilityId": 4,
+        "name": "東側通路",
+        "beacon": "008",
+        "cells": [
+            6,
+            7
+        ]
+    },
+    {
+        "id": 9,
+        "facilityId": 4,
+        "name": "西側通路",
+        "beacon": "009",
+        "cells": [
+            30,
+            31,
+            34,
+            35
         ]
     }
 ]

@@ -4,8 +4,7 @@
       <v-card-title class="headline grey lighten-2" primary-title>
         {{ facility.name }}
       </v-card-title>
-      <!-- <v-card-text>
-      </v-card-text> -->
+      <v-card-text> </v-card-text>
       <v-divider></v-divider>
       <v-img :src="facility.mapUrl" contain max-width="360px">
         <v-overlay absolute opacity="0.0">

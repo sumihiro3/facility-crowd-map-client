@@ -9,6 +9,12 @@
                 "name": "大阪市役所 1階",
                 "mapUrl": "https://www.city.osaka.lg.jp/somu/cmsfiles/contents/0000004/4219/04_1F.jpg",
                 "maxCells": 36
+            },
+            {
+                "facilityId": 2,
+                "name": "大阪市役所 地下1階",
+                "mapUrl": "https://www.city.osaka.lg.jp/somu/cmsfiles/contents/0000004/4219/03_B1F.png",
+                "maxCells": 36
             }
         ]
     },
@@ -18,13 +24,13 @@
         "url": "http://www.furitutaiikukaikan.jp/",
         "facilities": [
             {
-                "facilityId": 5,
+                "facilityId": 3,
                 "name": "大阪府立体育会館 1階",
                 "mapUrl": "http://www.furitutaiikukaikan.jp/wp-content/uploads/floor1.png",
                 "maxCells": 40
             },
             {
-                "facilityId": 6,
+                "facilityId": 4,
                 "name": "大阪府立体育会館 2階",
                 "mapUrl": "http://www.furitutaiikukaikan.jp/wp-content/uploads/floor2.png",
                 "maxCells": 36
