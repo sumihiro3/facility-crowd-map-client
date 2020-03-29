@@ -40,7 +40,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: '超限定マップ'
+      title: '超限定マップ（お試し版）'
     }
   },
   mounted() {
@@ -96,11 +96,7 @@ export default {
                     'https://2.bp.blogspot.com/-_xrqQ8WWe_g/XJB5e2_UFaI/AAAAAAABR_g/0zNnYPOnFsAd3AAIG7nDE-sOyFoyf59MwCLcBGAs/s400/website_heatmap.png',
                   size: 'full',
                   aspectRatio: '1:1',
-                  aspectMode: 'cover',
-                  action: {
-                    type: 'uri',
-                    uri: 'http://linecorp.com/'
-                  }
+                  aspectMode: 'cover'
                 },
                 body: {
                   type: 'box',
@@ -108,7 +104,7 @@ export default {
                   contents: [
                     {
                       type: 'text',
-                      text: '超限定マップ',
+                      text: '超限定マップ（お試し版）',
                       weight: 'bold',
                       size: 'xl'
                     },
