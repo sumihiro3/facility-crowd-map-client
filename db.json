@@ -6,15 +6,15 @@
             "values": [
                 {
                     "id": "001",
-                    "number_of_person": 10
+                    "numberOfPerson": 10
                 },
                 {
                     "id": "002",
-                    "number_of_person": 4
+                    "numberOfPerson": 4
                 },
                 {
                     "id": "003",
-                    "number_of_person": 0
+                    "numberOfPerson": 0
                 }
             ]
         }
