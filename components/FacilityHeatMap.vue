@@ -18,10 +18,10 @@
                 tile
                 color="rgba(255,0,0,0.5)"
               >
-                <span style="color: rgba(0,0,0,0.0);">｜</span>
+                <span style="color: rgba(0,0,0,0.0);">{{ n }}</span>
               </v-card>
               <v-card v-else class="pa-0 ma-0" tile color="transparent">
-                <span style="color: rgba(0,0,0,0.0);">｜</span>
+                <span style="color: rgba(0,0,0,0.0);">{{ n }}</span>
               </v-card>
             </v-flex>
           </v-layout>
@@ -52,7 +52,7 @@ import { FacilityBuilding } from '~/types'
 @Component
 export default class FacilityHeatMap extends Vue {
   @Prop() building!: FacilityBuilding
-  @Prop() facilityid!: string
+  @Prop() facilityid!: number
   @Prop() facilityname!: string
   @Prop() facilitymapurl!: string
   @Prop() facilitymaxcells!: number
