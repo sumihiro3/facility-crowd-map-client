@@ -20,6 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { FacilityBuilding } from '../types'
+import { $axios } from '@/plugins/axios-accessor'
 
 @Component({
   components: {
@@ -30,12 +31,13 @@ import { FacilityBuilding } from '../types'
 export default class Index extends Vue {
   isfacilitySelected: boolean = false
   selectedBuilding: FacilityBuilding | null = null
-  selectedFacilityId: string = ''
+  selectedFacilityId: number = -1
   selectedFacilityName: string = ''
   selectedFacilityMapUrl: string = ''
   selectedfacilityMaxCells: number = -1
+  apiResult: string = 'hoge'
 
-  facilitySelected(building: FacilityBuilding, facilityId: string) {
+  facilitySelected(building: FacilityBuilding, facilityId: number) {
     console.log(`Facility ${facilityId} on ${building.id} selected!!`)
     this.isfacilitySelected = true
     this.selectedBuilding = building
@@ -48,15 +50,34 @@ export default class Index extends Vue {
     }
   }
 
-  filterFacility(building: FacilityBuilding, facilityId: string) {
+  filterFacility(building: FacilityBuilding, facilityId: number) {
     return building.facilities.filter(function(f) {
       return f.facilityId === facilityId
     })
   }
 
-  closeHeatMap() {
+  async mounted() {
+    await this.getAreaData()
+  }
+
+  async closeHeatMap() {
     console.log('closeHeatMap')
     this.isfacilitySelected = false
+    await this.getAreaData()
+  }
+
+  async getAreaData() {
+    console.log('getAreaData called!!')
+    const res = await $axios.get('https://jsonplaceholder.typicode.com/todos', {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+    console.log('API Result', res.data)
+    return {
+      apiResult: res.data
+    }
   }
 }
 </script>

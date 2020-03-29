@@ -16,6 +16,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
+    script: [
+      { src: 'https://static.line-scdn.net/liff/edge/2.1/sdk.js' },
+      {
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.3.4/vconsole.min.js'
+      }
+    ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
@@ -29,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/axios-accessor'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -40,6 +47,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'

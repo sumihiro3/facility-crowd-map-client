@@ -23,7 +23,7 @@ export interface FacilityBuilding {
   name: string
   url: string
   facilities: Array<{
-    facilityId: string
+    facilityId: number
     name: string
     mapUrl: string
     maxCells?: number
@@ -31,7 +31,7 @@ export interface FacilityBuilding {
 }
 
 export interface Facility {
-  facilityId: string
+  facilityId: number
   name: string
   mapUrl: string
   maxCells?: number

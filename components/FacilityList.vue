@@ -46,7 +46,7 @@ export default class FacilityList extends Vue {
     console.log('hoge', val)
   }
 
-  facilitySelected(building: FacilityBuilding, facility: string) {
+  facilitySelected(building: FacilityBuilding, facility: number) {
     console.log('Facility: ', facility)
     this.$emit('facilitySelected', building, facility)
   }

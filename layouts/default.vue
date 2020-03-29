@@ -39,6 +39,55 @@ export default {
       rightDrawer: false,
       title: '超限定マップ'
     }
+  },
+  mounted() {
+    this.initVconsole()
+  },
+  methods: {
+    initVconsole() {
+      // vConsoleをイニシャライズ
+      /* eslint no-unused-vars: 0 */
+      window.vConsole = new window.VConsole({
+        defaultPlugins: ['system', 'network', 'element', 'storage'],
+        maxLogNumber: 1000,
+        onReady() {
+          console.log('vConsole is ready.')
+        },
+        onClearLog() {
+          console.log('on clearLog')
+        }
+      })
+    },
+    initLiff() {
+      // eslint-disable-next-line no-undef
+      liff
+        .init({
+          liffId: '1654002474-d1eY563w'
+        })
+        .then(() => {
+          // Start to use liff's api
+          // this.$store.commit('setLiff', liff)
+        })
+        .catch(err => {
+          // Error happens during initialization
+          console.log(err.code, err.message)
+        })
+    },
+    shareMessage() {
+      // eslint-disable-next-line no-undef
+      liff
+        .shareTargetPicker([
+          {
+            type: 'text',
+            text: 'this is a test'
+          }
+        ])
+        .then(alert('ShareTargetPicker was launched'))
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .catch(function(res) {
+          alert('Failed to launch ShareTargetPicker')
+        })
+    }
   }
 }
 </script>
