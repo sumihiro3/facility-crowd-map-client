@@ -44,7 +44,9 @@ export default {
     }
   },
   mounted() {
-    this.initVconsole()
+    if (process.env.useVconsole === 'YES') {
+      this.initVconsole()
+    }
     this.initLiff()
   },
   methods: {

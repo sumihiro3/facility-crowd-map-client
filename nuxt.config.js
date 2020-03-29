@@ -57,6 +57,12 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  env: {
+    apiBaseUrl: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+    debugUserId: process.env.DEBUG_USER_ID || 'dev_user',
+    useVconsole: process.env.USE_VCONSOLE || 'YES',
+    deployEnvName: process.env.DEPLOY_ENV_NAME || 'dev'
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
