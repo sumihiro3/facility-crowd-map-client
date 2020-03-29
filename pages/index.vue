@@ -1,15 +1,41 @@
 <template>
   <div>
-    <FacilityList @facilitySelected="facilitySelected" />
-    <v-dialog v-model="isfacilitySelected" width="500" persistent>
+    <v-card class="mx-auto" width="100%" outlined>
+      <v-list>
+        <v-list-item>
+          <v-list-item-title>
+            混雑状況を見たい施設を選択してください
+          </v-list-item-title>
+        </v-list-item>
+
+        <v-list-group
+          v-for="building in facilityBuildings"
+          :key="building.id"
+          no-action
+          sub-group
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>{{ building.name }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item
+            v-for="facility in building.facilities"
+            :key="facility.facilityId"
+            @click="facilitySelected(facility, building)"
+          >
+            <v-list-item-title v-text="facility.name"></v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-card>
+    <!-- Heat map -->
+    <v-dialog v-model="isBeaconDataListLoaded" width="500" persistent>
       <FacilityHeatMap
-        v-if="isfacilitySelected == true"
-        :building="selectedBuilding"
-        :facilityid="selectedFacilityId"
-        :facilityname="selectedFacilityName"
-        :facilitymapurl="selectedFacilityMapUrl"
-        :facilitymaxcells="selectedfacilityMaxCells"
-        :beaconlist="beaconDataList"
+        v-if="isBeaconDataListLoaded"
+        :facility="selectedFacility"
+        :beacondatalist="beaconAreaDataList"
         @closeHeatMap="closeHeatMap"
       />
     </v-dialog>
@@ -20,60 +46,39 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { FacilityBuilding } from '../types'
+import { FacilityBuilding, Facility, BeaconAreaData } from '../types'
 import { $axios } from '@/plugins/axios-accessor'
+import FacilityBuildings from '@/data/facility_buildings.json'
 
 @Component({
   components: {
-    FacilityList: () => import('@/components/FacilityList.vue'),
     FacilityHeatMap: () => import('@/components/FacilityHeatMap.vue')
   }
 })
 export default class Index extends Vue {
-  isfacilitySelected: boolean = false
+  facilityBuildings: FacilityBuilding[] = FacilityBuildings
+  isBeaconDataListLoaded: boolean = false
   selectedBuilding: FacilityBuilding | null = null
-  selectedFacilityId: number = -1
-  selectedFacilityName: string = ''
-  selectedFacilityMapUrl: string = ''
-  selectedfacilityMaxCells: number = -1
-  beaconId: string = '013b885d3c'
-  numberOfPerson: number = 0
-  apiResult: string = 'hoge'
-  beaconDataList: any = null
+  selectedFacility: Facility | null = null
+  beaconAreaDataList: BeaconAreaData[] | null = null
 
-  facilitySelected(building: FacilityBuilding, facilityId: number) {
-    console.log(`Facility ${facilityId} on ${building.id} selected!!`)
-    this.isfacilitySelected = true
+  async facilitySelected(facility: Facility, building: FacilityBuilding) {
+    console.log('Facility: ', facility)
+    console.log('Building: ', building)
+    this.isBeaconDataListLoaded = false
     this.selectedBuilding = building
-    this.selectedFacilityId = facilityId
-    const facility = this.filterFacility(building, facilityId)[0]
-    this.selectedFacilityName = facility.name
-    this.selectedFacilityMapUrl = facility.mapUrl
-    if (facility.maxCells) {
-      this.selectedfacilityMaxCells = facility.maxCells
-    }
+    this.selectedFacility = facility
+    this.beaconAreaDataList = await this.getFacilityBeaconData(
+      facility.facilityId
+    )
+    this.isBeaconDataListLoaded = true
   }
 
-  filterFacility(building: FacilityBuilding, facilityId: number) {
-    return building.facilities.filter(function(f) {
-      return f.facilityId === facilityId
-    })
-  }
-
-  async mounted() {
-    await this.getAreaData()
-    console.log('Finish mounted', this.apiResult, this.beaconDataList)
-  }
-
-  closeHeatMap() {
-    console.log('closeHeatMap')
-    this.isfacilitySelected = false
-  }
-
-  async getAreaData() {
-    console.log('getAreaData called!!')
+  async getFacilityBeaconData(facilityId: number) {
+    console.log('getFacilityBeaconData called!!', facilityId)
     const res = await $axios.get(
-      'https://227ba53a.ngrok.io/api/facility?facility_id=1',
+      // TODO This is fake server. Need to change.
+      `http://my-json-server.typicode.com/sumihiro3/facility-crowd-map-client/facilities/${facilityId}`,
       {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -82,11 +87,12 @@ export default class Index extends Vue {
       }
     )
     console.log('API Result', res.data)
-    this.apiResult = res.data
-    this.beaconDataList = res.data.values
-    return {
-      apiResult: res.data
-    }
+    return res.data.values
+  }
+
+  closeHeatMap() {
+    console.log('closeHeatMap')
+    this.isBeaconDataListLoaded = false
   }
 }
 </script>

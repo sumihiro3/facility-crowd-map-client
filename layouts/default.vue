@@ -45,6 +45,7 @@ export default {
   },
   mounted() {
     this.initVconsole()
+    this.initLiff()
   },
   methods: {
     initVconsole() {
@@ -63,13 +64,14 @@ export default {
     },
     initLiff() {
       // eslint-disable-next-line no-undef
-      liff
+      window.liff
         .init({
           liffId: '1654002474-d1eY563w'
         })
         .then(() => {
           // Start to use liff's api
           // this.$store.commit('setLiff', liff)
+          console.log('LIFF initialized!!')
         })
         .catch(err => {
           // Error happens during initialization
@@ -77,19 +79,24 @@ export default {
         })
     },
     shareMessage() {
-      // eslint-disable-next-line no-undef
-      liff
-        .shareTargetPicker([
-          {
-            type: 'text',
-            text: 'this is a test'
-          }
-        ])
-        .then(alert('ShareTargetPicker was launched'))
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        .catch(function(res) {
-          alert('Failed to launch ShareTargetPicker')
-        })
+      if (window.liff.isLoggedIn()) {
+        // eslint-disable-next-line no-undef
+        window.liff
+          .shareTargetPicker([
+            {
+              type: 'text',
+              text: 'this is a test'
+            }
+          ])
+          .then(alert('ShareTargetPicker was launched'))
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          .catch(function(res) {
+            console.error('Error!! at share target picker', res)
+            alert('Failed to launch ShareTargetPicker')
+          })
+      } else {
+        window.liff.login()
+      }
     }
   }
 }

@@ -2,21 +2,20 @@
   <div>
     <v-card>
       <v-card-title class="headline grey lighten-2" primary-title>
-        {{ facilityname }}
+        {{ facility.name }}
       </v-card-title>
-      <v-card-text>
-        {{ building.name }}
-      </v-card-text>
+      <!-- <v-card-text>
+      </v-card-text> -->
       <v-divider></v-divider>
-      <v-img :src="facilitymapurl" contain max-width="360px">
+      <v-img :src="facility.mapUrl" contain max-width="360px">
         <v-overlay absolute opacity="0.0">
           <v-layout wrap>
-            <v-flex v-for="n in facilitymaxcells" :key="n" xs3 sm3 md3 lg3 xl3>
+            <v-flex v-for="n in facility.maxCells" :key="n" xs3 sm3 md3 lg3 xl3>
               <v-card
-                v-if="hasBeaconInCell(facilityid, n) == true"
+                v-if="hasBeaconInCell(facility.facilityId, n) == true"
                 class="pa-0 ma-0"
                 tile
-                :color="getCellColor(getPersonInCell(facilityid, n))"
+                :color="getCellColor(getPersonInCell(facility.facilityId, n))"
               >
                 <span style="color: rgba(0,0,0,0.0);">｜</span>
               </v-card>
@@ -47,58 +46,46 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { FacilityBuilding, BeaconArea } from '~/types'
+import { Facility, BeaconArea, BeaconAreaData } from '~/types'
 import BeaconAreas from '@/data/areas.json'
 
 @Component
 export default class FacilityHeatMap extends Vue {
-  @Prop() building!: FacilityBuilding
-  @Prop() facilityid!: number
-  @Prop() facilityname!: string
-  @Prop() facilitymapurl!: string
-  @Prop() facilitymaxcells!: number
-  @Prop() beaconlist!: any[]
+  @Prop() facility!: Facility
+  @Prop() beacondatalist!: BeaconAreaData[]
   beaconAreas: BeaconArea[] = BeaconAreas
 
   hasBeaconInCell(facilityId: number, cellNo: number) {
     console.log('hasBeacon called', cellNo)
-    const beacons = this.beaconAreas.filter(item => {
-      return (item.facilityId = facilityId)
+    const beaconsInFacility = this.beaconAreas.filter(item => {
+      return item.facilityId === facilityId
     })
-    const cells = beacons.filter(item => {
-      if (item.cells.includes(cellNo) === true) {
-        return cellNo
-      }
+    const targetBeaconForCell = beaconsInFacility.filter(item => {
+      return item.cells.includes(cellNo)
     })
-    console.log(cells)
-    return cells.length > 0
+    console.log('targetBeaconForCell', targetBeaconForCell)
+    return targetBeaconForCell.length > 0
   }
 
   getPersonInCell(facilityId: number, cellNo: number) {
-    console.log('getPersonInCell called', cellNo)
-    const beacons = this.beaconAreas.filter(item => {
-      return (item.facilityId = facilityId)
+    console.log('getPersonInCell called', facilityId, cellNo)
+    console.log('this.beaconAreas', this.beaconAreas)
+    console.log('this.beacondatalist', this.beacondatalist)
+    const beaconsInFacility = this.beaconAreas.filter(item => {
+      return item.facilityId === facilityId
     })
-    const cells = beacons.filter(item => {
-      if (item.cells.includes(cellNo) === true) {
-        this.beaconlist.filter(a => {
-          if (a.area_id === item.beacon) {
-            return a.number_of_person
-          }
-        })
-      }
-    })
-    console.log(cells)
-    return cells[0]
-  }
+    console.log('beaconsInFacility', beaconsInFacility)
+    const targetBeacon = beaconsInFacility.filter(item => {
+      return item.cells.includes(cellNo) === true
+    })[0]
+    console.log('targetBeacon', targetBeacon)
 
-  getBeaconCells(beaconId: string) {
-    console.log('getBeaconCells called')
-    const beacons = this.beaconAreas.filter(item => {
-      return (item.beacon = beaconId)
-    })
-    console.log(beacons)
-    return beacons[0].cells
+    const targetAreaData = this.beacondatalist.filter(item => {
+      return item.id === targetBeacon.beacon
+    })[0]
+    console.log('beaconData', targetAreaData)
+    console.log('numberOfPerson', targetAreaData.numberOfPerson)
+    return targetAreaData.numberOfPerson
   }
 
   getCellColor(numberOfPerson: number) {
