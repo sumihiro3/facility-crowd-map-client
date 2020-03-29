@@ -78,7 +78,7 @@ export default class Index extends Vue {
     console.log('getFacilityBeaconData called!!', facilityId)
     const res = await $axios.get(
       // TODO This is fake server. Need to change.
-      `http://my-json-server.typicode.com/sumihiro3/facility-crowd-map-client/facilities/${facilityId}`,
+      `https://my-json-server.typicode.com/sumihiro3/facility-crowd-map-client/facilities/${facilityId}`,
       {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
