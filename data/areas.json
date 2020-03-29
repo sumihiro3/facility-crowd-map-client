@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "facilityId": 1,
+        "name": "市民ロビー",
+        "beacon": "013b885d3c",
+        "cells": [
+            29,
+            30,
+            33,
+            34
+        ]
+    },
+    {
+        "id": 2,
+        "facilityId": 1,
+        "name": "会計室",
+        "beacon": "aaaaaaaa",
+        "cells": [
+            4,
+            8
+        ]
+    },
+    {
+        "id": 3,
+        "facilityId": 2,
+        "name": "郵便局",
+        "beacon": "bbbbb",
+        "cells": [
+            17,
+            21
+        ]
+    },
+    {
+        "id": 4,
+        "facilityId": 2,
+        "name": "総務局",
+        "beacon": "ccccc",
+        "cells": [
+            31,
+            35
+        ]
+    },
+    {
+        "id": 5,
+        "facilityId": 2,
+        "name": "子供青少年局",
+        "beacon": "ddd",
+        "cells": [
+            2,
+            3,
+            6,
+            7
+        ]
+    }
+]

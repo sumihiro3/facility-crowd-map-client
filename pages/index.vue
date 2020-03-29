@@ -9,6 +9,7 @@
         :facilityname="selectedFacilityName"
         :facilitymapurl="selectedFacilityMapUrl"
         :facilitymaxcells="selectedfacilityMaxCells"
+        :beaconlist="beaconDataList"
         @closeHeatMap="closeHeatMap"
       />
     </v-dialog>
@@ -35,7 +36,10 @@ export default class Index extends Vue {
   selectedFacilityName: string = ''
   selectedFacilityMapUrl: string = ''
   selectedfacilityMaxCells: number = -1
+  beaconId: string = '013b885d3c'
+  numberOfPerson: number = 0
   apiResult: string = 'hoge'
+  beaconDataList: any = null
 
   facilitySelected(building: FacilityBuilding, facilityId: number) {
     console.log(`Facility ${facilityId} on ${building.id} selected!!`)
@@ -58,23 +62,28 @@ export default class Index extends Vue {
 
   async mounted() {
     await this.getAreaData()
+    console.log('Finish mounted', this.apiResult, this.beaconDataList)
   }
 
-  async closeHeatMap() {
+  closeHeatMap() {
     console.log('closeHeatMap')
     this.isfacilitySelected = false
-    await this.getAreaData()
   }
 
   async getAreaData() {
     console.log('getAreaData called!!')
-    const res = await $axios.get('https://jsonplaceholder.typicode.com/todos', {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Origin': '*'
+    const res = await $axios.get(
+      'https://227ba53a.ngrok.io/api/facility?facility_id=1',
+      {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Access-Control-Allow-Origin': '*'
+        }
       }
-    })
+    )
     console.log('API Result', res.data)
+    this.apiResult = res.data
+    this.beaconDataList = res.data.values
     return {
       apiResult: res.data
     }

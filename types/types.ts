@@ -30,9 +30,17 @@ export interface FacilityBuilding {
   }>
 }
 
-export interface Facility {
+export interface BeaconArea {
+  id: number
   facilityId: number
   name: string
-  mapUrl: string
-  maxCells?: number
+  beacon: string
+  cells: number[]
 }
+
+// export interface Facility {
+//   facilityId: number
+//   name: string
+//   mapUrl: string
+//   maxCells?: number
+// }

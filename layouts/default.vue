@@ -3,6 +3,9 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn icon color="pink" @click="shareMessage">
+        <v-icon>mdi-share</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-content fluid>
       <v-container fluid>
