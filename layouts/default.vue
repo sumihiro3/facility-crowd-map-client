@@ -1,9 +1,19 @@
 <template>
   <v-app light>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-overlay v-if="loading" color="#F4F4F4" opacity="1" z-index="9999">
+      <div>
+        <v-progress-circular
+          size="70"
+          width="7"
+          color="primary"
+          indeterminate
+        ></v-progress-circular>
+      </div>
+    </v-overlay>
+    <v-app-bar color="primary" dark :clipped-left="clipped" fixed app>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn icon color="pink" @click="shareMessage">
+      <v-btn icon color="#F4F4F4" @click="shareMessage">
         <v-icon>mdi-share</v-icon>
       </v-btn>
     </v-app-bar>
@@ -22,32 +32,18 @@
 export default {
   data() {
     return {
+      loading: true,
       clipped: false,
-      drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: '超限定マップ（お試し版）'
     }
   },
-  mounted() {
+  async mounted() {
     if (process.env.useVconsole === 'YES') {
       this.initVconsole()
     }
-    this.initLiff()
+    await this.initLiff()
+    this.loading = false
   },
   methods: {
     initVconsole() {
@@ -64,15 +60,14 @@ export default {
         }
       })
     },
-    initLiff() {
+    async initLiff() {
       // eslint-disable-next-line no-undef
-      window.liff
+      await window.liff
         .init({
           liffId: '1654002474-d1eY563w'
         })
         .then(() => {
           // Start to use liff's api
-          // this.$store.commit('setLiff', liff)
           console.log('LIFF initialized!!')
         })
         .catch(err => {
@@ -87,7 +82,7 @@ export default {
           .shareTargetPicker([
             {
               type: 'flex',
-              altText: '超限定マップ',
+              altText: '超限定マップ（お試し版）',
               contents: {
                 type: 'bubble',
                 hero: {

@@ -30,6 +30,21 @@
         </v-list-group>
       </v-list>
     </v-card>
+    <v-overlay
+      v-if="selectedFacility && !isBeaconDataListLoaded"
+      color="#212121"
+      opacity="0.46"
+      z-index="9999"
+    >
+      <div>
+        <v-progress-circular
+          size="70"
+          width="7"
+          color="#F4F4F4"
+          indeterminate
+        ></v-progress-circular>
+      </div>
+    </v-overlay>
     <!-- Heat map -->
     <v-dialog v-model="isBeaconDataListLoaded" width="500" persistent>
       <FacilityHeatMap
@@ -41,8 +56,6 @@
     </v-dialog>
   </div>
 </template>
-
-<style></style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -93,6 +106,10 @@ export default class Index extends Vue {
   closeHeatMap() {
     console.log('closeHeatMap')
     this.isBeaconDataListLoaded = false
+    this.selectedFacility = null
+    this.selectedBuilding = null
   }
 }
 </script>
+
+<style></style>
