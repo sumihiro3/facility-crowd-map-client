@@ -14,7 +14,7 @@
                 },
                 {
                     "id": "003",
-                    "numberOfPerson": 0
+                    "numberOfPerson": 1
                 }
             ]
         },
@@ -28,7 +28,7 @@
                 },
                 {
                     "id": "005",
-                    "numberOfPerson": 0
+                    "numberOfPerson": 5
                 }
             ]
         },
@@ -42,7 +42,7 @@
                 },
                 {
                     "id": "007",
-                    "numberOfPerson": 3
+                    "numberOfPerson": 7
                 }
             ]
         },
@@ -52,7 +52,7 @@
             "values": [
                 {
                     "id": "008",
-                    "numberOfPerson": 0
+                    "numberOfPerson": 3
                 },
                 {
                     "id": "009",
