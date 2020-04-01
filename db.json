@@ -60,5 +60,137 @@
                 }
             ]
         }
+    ],
+    "data": [
+        {
+            "id": 1,
+            "facilities": [
+                {
+                    "id": 1,
+                    "name": "大阪市役所 1階",
+                    "values": [
+                        {
+                            "id": "001",
+                            "numberOfPerson": 10
+                        },
+                        {
+                            "id": "002",
+                            "numberOfPerson": 4
+                        },
+                        {
+                            "id": "003",
+                            "numberOfPerson": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "大阪市役所 地下1階",
+                    "values": [
+                        {
+                            "id": "004",
+                            "numberOfPerson": 20
+                        },
+                        {
+                            "id": "005",
+                            "numberOfPerson": 5
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "大阪府立体育会館 1階",
+                    "values": [
+                        {
+                            "id": "006",
+                            "numberOfPerson": 100
+                        },
+                        {
+                            "id": "007",
+                            "numberOfPerson": 7
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "大阪府立体育会館 2階",
+                    "values": [
+                        {
+                            "id": "008",
+                            "numberOfPerson": 3
+                        },
+                        {
+                            "id": "009",
+                            "numberOfPerson": 40
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "facilities": [
+                {
+                    "id": 1,
+                    "name": "大阪市役所 1階",
+                    "values": [
+                        {
+                            "id": "001",
+                            "numberOfPerson": 1
+                        },
+                        {
+                            "id": "002",
+                            "numberOfPerson": 10
+                        },
+                        {
+                            "id": "003",
+                            "numberOfPerson": 6
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "大阪市役所 地下1階",
+                    "values": [
+                        {
+                            "id": "004",
+                            "numberOfPerson": 1
+                        },
+                        {
+                            "id": "005",
+                            "numberOfPerson": 9
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "大阪府立体育会館 1階",
+                    "values": [
+                        {
+                            "id": "006",
+                            "numberOfPerson": 5
+                        },
+                        {
+                            "id": "007",
+                            "numberOfPerson": 70
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "大阪府立体育会館 2階",
+                    "values": [
+                        {
+                            "id": "008",
+                            "numberOfPerson": 10
+                        },
+                        {
+                            "id": "009",
+                            "numberOfPerson": 1
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 }
