@@ -59,6 +59,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+// import { LIFFConfig } from 'liff-type'
 import { FacilityBuilding, Facility, BeaconAreaData } from '../types'
 import { $axios } from '@/plugins/axios-accessor'
 import FacilityBuildings from '@/data/facility_buildings.json'
@@ -74,6 +75,23 @@ export default class Index extends Vue {
   selectedBuilding: FacilityBuilding | null = null
   selectedFacility: Facility | null = null
   beaconAreaDataList: BeaconAreaData[] | null = null
+
+  // async mounted() {
+  //   await this.initLiff()
+  // }
+
+  // async initLiff() {
+  //   const liff = window.liff
+  //   const liffConfig: LIFFConfig = {
+  //     liffId: ''
+  //   }
+  //   await liff.init(liffConfig)
+  //   console.log('LIFF initialized!!')
+  //   console.log('isLoggedIn:', liff.isLoggedIn())
+  //   if (liff.isLoggedIn() === false) {
+  //     liff.login()
+  //   }
+  // }
 
   async facilitySelected(facility: Facility, building: FacilityBuilding) {
     console.log('Facility: ', facility)

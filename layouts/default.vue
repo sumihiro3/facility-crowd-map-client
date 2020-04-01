@@ -40,7 +40,7 @@ export default {
   },
   async mounted() {
     if (process.env.useVconsole === 'YES') {
-      this.initVconsole()
+      await this.initVconsole()
     }
     await this.initLiff()
     this.loading = false
